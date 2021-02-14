@@ -22,8 +22,8 @@ describe("Chron", () => {
     });
 
     it("-2000A1:0", async () => {
-      const chron = new Chron('2000A1:0');
-      expect(chron.toString()).to.equal("2000A1:0");
+      const chron = new Chron('-2000A1:0');
+      expect(chron.toString()).to.equal("-2000A1:0");
       // expect(chron.toDate().toISOString()).to.equal('-2000-01-01T00:00:00.000Z');
     });
 
@@ -296,6 +296,79 @@ describe("Chron", () => {
       const chron = new Chron(new Date("2021-12-31T00:00:00Z"));
       expect(chron.toString()).to.equal("2021YD:0");
       expect(chron.toDate().toISOString()).to.equal('2021-12-31T00:00:00.000Z');
+    });
+  });
+  describe('Time', () => {
+    it("2000A1:000", async () => {
+      const chron = new Chron('2000A1:000');
+      expect(chron.toString()).to.equal("2000A1:0");
+      expect(chron.toDate().toISOString()).to.equal('2000-01-01T00:00:00.000Z');
+    });
+
+    it("2000A1:001", async () => {
+      const chron = new Chron('2000A1:001');
+      expect(chron.toString()).to.equal("2000A1:1");
+      expect(chron.toDate().toISOString()).to.equal('2000-01-01T00:01:26.400Z');
+    });
+
+    it("2000A1:250", async () => {
+      const chron = new Chron('2000A1:250');
+      expect(chron.toString()).to.equal("2000A1:250");
+      expect(chron.toDate().toISOString()).to.equal('2000-01-01T06:00:00.000Z');
+    });
+
+    it("2000A1:500", async () => {
+      const chron = new Chron('2000A1:500');
+      expect(chron.toString()).to.equal("2000A1:500");
+      expect(chron.toDate().toISOString()).to.equal('2000-01-01T12:00:00.000Z');
+    });
+
+    it("2000A1:750", async () => {
+      const chron = new Chron('2000A1:750');
+      expect(chron.toString()).to.equal("2000A1:750");
+      expect(chron.toDate().toISOString()).to.equal('2000-01-01T18:00:00.000Z');
+    });
+
+    it("2000A1:999", async () => {
+      const chron = new Chron('2000A1:999');
+      expect(chron.toString()).to.equal("2000A1:999");
+      expect(chron.toDate().toISOString()).to.equal('2000-01-01T23:58:33.600Z');
+    });
+
+    it("Midnight", async () => {
+      const chron = new Chron(new Date('2000-01-01T00:00:00.000Z'));
+      expect(chron.toString()).to.equal("2000A1:0");
+      expect(chron.toDate().toISOString()).to.equal('2000-01-01T00:00:00.000Z');
+    });
+
+    it("12:01 AM", async () => {
+      const chron = new Chron(new Date('2000-01-01T00:01:00.000Z'));
+      expect(chron.toString()).to.equal("2000A1:0.694");
+      expect(chron.toDate().toISOString()).to.equal('2000-01-01T00:01:00.000Z');
+    });
+
+    it("6:00 AM", async () => {
+      const chron = new Chron(new Date('2000-01-01T06:00:00.000Z'));
+      expect(chron.toString()).to.equal("2000A1:250");
+      expect(chron.toDate().toISOString()).to.equal('2000-01-01T06:00:00.000Z');
+    });
+
+    it("12:00 PM", async () => {
+      const chron = new Chron(new Date('2000-01-01T12:00:00.000Z'));
+      expect(chron.toString()).to.equal("2000A1:500");
+      expect(chron.toDate().toISOString()).to.equal('2000-01-01T12:00:00.000Z');
+    });
+
+    it("6:00 PM", async () => {
+      const chron = new Chron(new Date('2000-01-01T18:00:00.000Z'));
+      expect(chron.toString()).to.equal("2000A1:750");
+      expect(chron.toDate().toISOString()).to.equal('2000-01-01T18:00:00.000Z');
+    });
+
+    it("11:59 PM", async () => {
+      const chron = new Chron(new Date('2000-01-01T23:59:00.000Z'));
+      expect(chron.toString()).to.equal("2000A1:999.306");
+      expect(chron.toDate().toISOString()).to.equal('2000-01-01T23:59:00.000Z');
     });
   });
 });

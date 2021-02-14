@@ -2,6 +2,7 @@
 // 1. Get time zones working
 
 const millisecondsInDay = 86400000;
+
 interface Zone {
   longitude: number;
   specificity: number;
@@ -12,13 +13,9 @@ type Day = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 'LD' | '
 
 export class Chron {
   private _year: number;
-
   private _dayOfYear: number;
-
   private _time: number;
-
   private _offset: number;
-
   private _zone: Zone;
 
   constructor(
@@ -56,7 +53,7 @@ export class Chron {
       `${this._year}-01-01T00:00:00Z`,
     );
     this._dayOfYear = Math.floor((date.getTime() - startYear.getTime()) / millisecondsInDay) + 1;
-    this._time = ((date.getTime() - startYear.getTime()) % millisecondsInDay) / millisecondsInDay;
+    this._time = ((date.getTime() - startYear.getTime()) % millisecondsInDay) / millisecondsInDay * 1000;
   }
 
   private _parse(value: string) {
@@ -92,11 +89,11 @@ export class Chron {
     const startYear = new Date(
       `${this.year}-01-01T00:00:00Z`,
     );
-    return new Date(startYear.getTime() + ((this._dayOfYear - 1) + this.time) * millisecondsInDay);
+    return new Date(startYear.getTime() + ((this._dayOfYear - 1) + this._time / 1000) * millisecondsInDay);
   }
 
   toString(): string {
-    return `${this.year}${this.fort}${this.day}:${this.time}${this.zoneString}`;
+    return `${this.year}${this.fort}${this.day}:${this.time}${this.zone}`;
   }
 
   get year(): number {
@@ -124,23 +121,31 @@ export class Chron {
     return (this._dayOfYear % 14 !== 0 ? this._dayOfYear % 14 : 14) as Day;
   }
 
+  get dayOfYear(): number {
+    return this._dayOfYear;
+  }
+
+  set dayOfYear(dayOfYear: number) {
+    this._dayOfYear = dayOfYear;
+  }
+
   get time(): number {
-    return this._time;
+    return Math.round(this._time * 1000) / 1000;
   }
 
   set time(time: number) {
     this._time = time;
   }
 
-  get zone(): Zone {
-    return this._zone;
+  get offset(): number {
+    return this._offset;
   }
 
-  set zone(zone: Zone) {
-    this._zone = zone;
+  set offset(offset: number) {
+    this._offset = offset;
   }
 
-  get zoneString(): string {
+  get zone(): string {
     return '';
   }
 }
