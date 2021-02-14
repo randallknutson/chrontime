@@ -1,0 +1,35 @@
+{
+  "name": "chron-time",
+  "version": "1.0.0",
+  "description": "Chron Time Module",
+  "main": "lib/index.js",
+  "author": "Randall Knutson <randall@knutson.io>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node -r ts-node/register index.ts",
+    "test": "mocha --require ts-node/register --reporter spec './{,!(node_modules)/**/}*.test.ts'",
+    "watch": "tsc -w",
+    "build": "tsc",
+    "lint": "eslint ./src --ext .js,.ts --fix",
+    "prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.14",
+    "@types/mocha": "^8.2.0",
+    "@typescript-eslint/eslint-plugin": "^4.15.0",
+    "@typescript-eslint/parser": "^4.15.0",
+    "chai": "^4.3.0",
+    "eslint": "^7.19.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-config-eslint": "^7.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsdoc": "^31.6.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "mocha": "^8.2.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}
