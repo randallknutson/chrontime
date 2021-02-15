@@ -380,32 +380,32 @@ describe('Chron', () => {
   describe('Time Zone', () => {
     it('Jan 1 +100', () => {
       const chron = new Chron(new Date('2000-01-01T00:00:00.000Z'), { offset: 100 });
-      expect(chron.toString()).to.equal('1999LD:900+100');
+      expect(chron.toString()).to.equal('1999YD:900+100');
       expect(chron.toDate().toISOString()).to.equal('2000-01-01T00:00:00.000Z');
     });
     it('Jan 1 +200', () => {
       const chron = new Chron(new Date('2000-01-01T00:00:00.000Z'), { offset: 200 });
-      expect(chron.toString()).to.equal('1999LD:800+200');
+      expect(chron.toString()).to.equal('1999YD:800+200');
       expect(chron.toDate().toISOString()).to.equal('2000-01-01T00:00:00.000Z');
     });
     it('Jan 1 +250', () => {
       const chron = new Chron(new Date('2000-01-01T00:00:00.000Z'), { offset: 250 });
-      expect(chron.toString()).to.equal('1999LD:750+250');
+      expect(chron.toString()).to.equal('1999YD:750+250');
       expect(chron.toDate().toISOString()).to.equal('2000-01-01T00:00:00.000Z');
     });
     it('Jan 1 +500', () => {
       const chron = new Chron(new Date('2000-01-01T00:00:00.000Z'), { offset: 500 });
-      expect(chron.toString()).to.equal('1999LD:500+500');
+      expect(chron.toString()).to.equal('1999YD:500+500');
       expect(chron.toDate().toISOString()).to.equal('2000-01-01T00:00:00.000Z');
     });
     it('Jan 1 +600', () => {
       const chron = new Chron(new Date('2000-01-01T00:00:00.000Z'), { offset: 600 });
-      expect(chron.toString()).to.equal('1999LD:400+600');
+      expect(chron.toString()).to.equal('1999YD:400+600');
       expect(chron.toDate().toISOString()).to.equal('2000-01-01T00:00:00.000Z');
     });
     it('Jan 1 +900', () => {
       const chron = new Chron(new Date('2000-01-01T00:00:00.000Z'), { offset: 900 });
-      expect(chron.toString()).to.equal('1999LD:100+900');
+      expect(chron.toString()).to.equal('1999YD:100+900');
       expect(chron.toDate().toISOString()).to.equal('2000-01-01T00:00:00.000Z');
     });
     it('Jan 1 -100', () => {

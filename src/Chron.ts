@@ -129,7 +129,7 @@ export class Chron {
       }
       if (dayOfYear < 1) {
         year--;
-        dayOfYear = this._isLeapYear(this.year) ? 366 : 365;
+        dayOfYear = this._isLeapYear(year) ? 366 : 365;
       }
       else if (dayOfYear > (this._isLeapYear(year) ? 366 : 365)) {
         year++;
