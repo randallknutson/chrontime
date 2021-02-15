@@ -1,7 +1,5 @@
-// TODO:
-// 1. Get time zones working
-
-const millisecondsInDay = 86400000;
+const millisecondsInDay = 24 * 60 * 60 * 1000;
+const degreesInMinute = 24 * 60 / 1000;
 
 type Fort = '' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z';
 type Day = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 'LD' | 'YD';
@@ -14,13 +12,7 @@ export class Chron {
 
   constructor(
     datetime?: string | Chron | Date,
-    options: {
-      offset?: number,
-      longitude?: number,
-      specificity?: number,
-    } = {
-        specificity: 1
-      },
+    offset?: number,
   ) {
     this._year = 0;
     this._dayOfYear = 0;
@@ -37,8 +29,12 @@ export class Chron {
     } else {
       this._convert(new Date());
     }
-    if (options?.offset) {
-      this.offset = options.offset;
+    if (offset !== undefined) {
+      this.offset = offset;
+    }
+    else {
+      const date = new Date();
+      this.offset = Math.floor(date.getTimezoneOffset() / degreesInMinute);
     }
   }
 
@@ -186,9 +182,5 @@ export class Chron {
 
   set offset(offset: number) {
     this._offset = offset;
-  }
-
-  get zone(): string {
-    return '';
   }
 }
