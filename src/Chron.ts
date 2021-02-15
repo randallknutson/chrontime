@@ -3,11 +3,6 @@
 
 const millisecondsInDay = 86400000;
 
-interface Zone {
-  longitude: number;
-  specificity: number;
-}
-
 type Fort = '' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z';
 type Day = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 'LD' | 'YD';
 
@@ -16,14 +11,16 @@ export class Chron {
   private _dayOfYear: number;
   private _time: number;
   private _offset: number;
-  private _zone: Zone;
 
   constructor(
     datetime?: string | Chron | Date,
-    zone: Zone = {
-      longitude: 0,
-      specificity: 1,
-    },
+    options: {
+      offset?: number,
+      longitude?: number,
+      specificity?: number,
+    } = {
+        specificity: 1
+      },
   ) {
     this._year = 0;
     this._dayOfYear = 0;
@@ -40,7 +37,9 @@ export class Chron {
     } else {
       this._convert(new Date());
     }
-    this._zone = zone;
+    if (options?.offset) {
+      this.offset = options.offset;
+    }
   }
 
   static now(): string {
@@ -53,11 +52,11 @@ export class Chron {
       `${this._year}-01-01T00:00:00Z`,
     );
     this._dayOfYear = Math.floor((date.getTime() - startYear.getTime()) / millisecondsInDay) + 1;
-    this._time = ((date.getTime() - startYear.getTime()) % millisecondsInDay) / millisecondsInDay * 1000;
+    this._time = ((date.getTime() - startYear.getTime()) % millisecondsInDay) / millisecondsInDay;
   }
 
   private _parse(value: string) {
-    const matches = value.match(/(-?\d{1,4})([A-Z])(D|[1-9][1-4]?):(\d{1,3}\.?\d*)([+-]\d{1,3})?/);
+    const matches = value.match(/(-?\d{1,4})([A-Z])(D|[1-9][1-4]?):(\d{3}\.?\d*)([+-]\d{3})?/);
     if (!matches) {
       throw new Error('Invalid time string - Did not match regex');
     }
@@ -77,23 +76,76 @@ export class Chron {
         throw new Error('Invalid time string - Invalid Day');
       }
     }
-    this._time = parseInt(matches[4]);
-    this._offset = parseInt(matches[5]);
+    this._time = parseFloat(matches[4]) / 1000;
+    if (matches[5]) {
+      this._offset = parseInt(matches[5]);
+    }
   }
 
   private _isLeapYear(year: number) {
     return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
   }
 
+  private _calculateDay(dayOfYear: number): Day {
+    if (dayOfYear === 365) {
+      return 'YD';
+    }
+    else if (dayOfYear === 366) {
+      return 'LD';
+    }
+    return (dayOfYear % 14 !== 0 ? dayOfYear % 14 : 14) as Day;
+  }
+
+  private _calculateFort(dayOfYear: number): Fort {
+    if (dayOfYear === 365 || dayOfYear === 366) {
+      return '';
+    }
+    return String.fromCharCode(Math.floor(dayOfYear / 14) - (dayOfYear % 14 !== 0 ? 0 : 1) + 65) as Fort;
+  }
+
   toDate(): Date {
     const startYear = new Date(
       `${this.year}-01-01T00:00:00Z`,
     );
-    return new Date(startYear.getTime() + ((this._dayOfYear - 1) + this._time / 1000) * millisecondsInDay);
+    return new Date(startYear.getTime() + ((this._dayOfYear - 1) + this._time) * millisecondsInDay);
   }
 
   toString(): string {
-    return `${this.year}${this.fort}${this.day}:${this.time}${this.zone}`;
+    let year: number = this.year;
+    let dayOfYear: number = this.dayOfYear;
+    let time: number | string = this.time;
+    let day: Day = 1;
+    let fort: Fort = '';
+    let offset = '';
+    if (this.offset !== 0) {
+      time -= this.offset / 1000;
+      if (time < 0) {
+        dayOfYear--;
+        time++;
+      }
+      else if (time > 1) {
+        dayOfYear++;
+        time--;
+      }
+      if (dayOfYear < 1) {
+        year--;
+        dayOfYear = this._isLeapYear(this.year) ? 366 : 365;
+      }
+      else if (dayOfYear > (this._isLeapYear(year) ? 366 : 365)) {
+        year++;
+        dayOfYear = 1;
+      }
+      offset = (this.offset < 0 ? '' : '+') + '000'.substring(0, 3 - this.offset.toString().replace('-', '').length) + this.offset.toString();
+      day = this._calculateDay(dayOfYear);
+      fort = this._calculateFort(dayOfYear);
+    }
+    else {
+      day = this._calculateDay(dayOfYear);
+      fort = this._calculateFort(dayOfYear);
+    }
+    time = (Math.round(time * 1000000) / 1000).toString();
+    time = '000'.substring(0, 3 - time.split('.')[0].length) + time;
+    return `${year}${fort}${day}:${time}${offset}`;
   }
 
   get year(): number {
@@ -105,20 +157,11 @@ export class Chron {
   }
 
   get fort(): Fort {
-    if (this._dayOfYear === 365 || this._dayOfYear === 366) {
-      return '';
-    }
-    return String.fromCharCode(Math.floor(this._dayOfYear / 14) - (this.day !== 14 ? 0 : 1) + 65) as Fort;
+    return this._calculateFort(this.dayOfYear);
   }
 
   get day(): Day {
-    if (this._dayOfYear === 365) {
-      return 'YD';
-    }
-    else if (this._dayOfYear === 366) {
-      return 'LD';
-    }
-    return (this._dayOfYear % 14 !== 0 ? this._dayOfYear % 14 : 14) as Day;
+    return this._calculateDay(this.dayOfYear);
   }
 
   get dayOfYear(): number {
@@ -130,7 +173,7 @@ export class Chron {
   }
 
   get time(): number {
-    return Math.round(this._time * 1000) / 1000;
+    return this._time;
   }
 
   set time(time: number) {
