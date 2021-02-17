@@ -1,10 +1,13 @@
 {
   "name": "chrontime",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Chron Time Module",
   "main": "lib/index.js",
   "author": "Randall Knutson <randall@knutson.io>",
   "license": "MIT",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "start": "node -r ts-node/register index.ts",
     "test": "mocha --require ts-node/register --reporter spec './{,!(node_modules)/**/}*.test.ts'",
