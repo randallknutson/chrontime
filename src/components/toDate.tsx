@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import "./../assets/scss/App.scss";
-const { Chron } = require('../../../lib/Chron');
+import "../assets/scss/App.scss";
+const { Chron } = require('@chrontime/chrontime');
 
 export default function ToDate(props) {
   const chron = new Chron();

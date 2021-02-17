@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import "./../assets/scss/App.scss";
-const { Chron } = require('../../../lib/Chron');
+const { Chron } = require('@chrontime/chrontime');
 
 export default function Current(props) {
   return (

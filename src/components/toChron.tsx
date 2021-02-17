@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import "./../assets/scss/App.scss";
-const { Chron } = require('../../../lib/Chron');
+import "../assets/scss/App.scss";
+const { Chron } = require('@chrontime/chrontime');
 
 export default function ToChron() {
   const date = new Date();
@@ -39,11 +39,15 @@ export default function ToChron() {
 
   let chronTime = '';
   try {
-    chronTime = new Chron(new Date(dateTime.datetime)).toString();
+    if (dateTime.datetime) {
+      chronTime = new Chron(new Date(dateTime.datetime)).toString();
+    }
+    console.log('a', dateTime.datetime, chronTime);
   }
   catch (err) {
     console.log(err);
   }
+  console.log('b', chronTime);
 
   return (
     <div className="card">

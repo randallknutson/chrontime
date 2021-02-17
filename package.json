@@ -66,6 +66,7 @@
     "webpack-merge": "^5.7.3"
   },
   "dependencies": {
+    "@chrontime/chrontime": "^0.1.0",
     "@coreui/coreui": "^3.4.0"
   }
 }
