@@ -1,5 +1,5 @@
 {
-  "name": "chrontime",
+  "name": "@chrontime/chrontime",
   "version": "0.1.0",
   "description": "Chron Time Module",
   "main": "lib/index.js",
