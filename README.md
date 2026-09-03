@@ -6,4 +6,4 @@ Spec and website for Chron Time.
 - Site: https://chronti.me
 - TypeScript implementation: https://github.com/randallknutson/chrontime.js
 
-The live site is the `gh-pages` branch. Webpack still writes into `docs/`; GitHub Pages serves the branch root, so copy `docs/index.html` and `docs/js/` up after a rebuild.
+The live site is the `gh-pages` branch. `yarn build` writes `index.html` and `js/` at that branch's root, which GitHub Pages serves.
