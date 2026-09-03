@@ -10,8 +10,6 @@ import { TickRing } from "./TickRing";
 export function Hero() {
   const { now, place, located, locating, requestLocation } = useClock();
   const cal = calendarFromDayOfYear(now.year, now.dayOfYear);
-  const letter = cal.fortnight || String(cal.day);
-  const dayLabel = cal.fortnight ? String(cal.day) : "";
   const zoneLabel = formatZone(now.zone);
 
   return (
@@ -30,27 +28,26 @@ export function Hero() {
         </g>
       </svg>
       <div className="hero-copy">
-        <div className="hero-letter-wrap">
-          <TickRing time={now.time} labels={false} />
-          <div className={cal.fortnight ? "hero-letter" : "hero-letter special"}>{letter}</div>
+        <div className="hero-clock">
+          <TickRing time={now.time} />
+          <div className="hero-clock-face">
+            <div className="hero-time">{formatTime(now.time, 1)}</div>
+            <div className="hero-time-label">chrons</div>
+          </div>
         </div>
-        <div className="hero-meta">
-          <div className="meta-block">
-            <div className="meta-label">Year</div>
-            <div className="meta-value">{now.year}</div>
-          </div>
-          <div className="meta-block">
-            <div className="meta-label">{cal.fortnight ? "Day" : "Outside the letters"}</div>
-            <div className="meta-value">{dayLabel || String(cal.day)}</div>
-          </div>
-          <div className="meta-block">
-            <div className="meta-label">Chrons</div>
-            <div className="meta-value gold">{formatTime(now.time, 1)}</div>
-          </div>
-          <div className="meta-block">
-            <div className="meta-label">{place.name}</div>
-            <div className="meta-value cyan">{zoneLabel}</div>
-          </div>
+        <div className="hero-date">
+          <span className="hero-date-year">{now.year}</span>
+          {cal.fortnight ? (
+            <>
+              <span className="hero-date-letter">{cal.fortnight}</span>
+              <span className="hero-date-day">{cal.day}</span>
+            </>
+          ) : (
+            <span className="hero-date-letter">{cal.day}</span>
+          )}
+          <span className="hero-date-dot">·</span>
+          <span className="hero-date-place">{place.name}</span>
+          <span className="hero-date-zone">{zoneLabel}</span>
         </div>
         <div className="hero-string">{formatInterchange(now)}</div>
         <h1>Twenty-six fortnights. One letter each.</h1>
