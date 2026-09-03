@@ -2,10 +2,10 @@ import { civilClockFromChrons, formatTime } from "../chron";
 import { useClock } from "../context";
 
 const MARKS = [
-  { t: 0, label: "000", caption: "Midnight UTC · 0.000 day" },
-  { t: 250, label: "250", caption: "0.250 day · 6h POSIX" },
-  { t: 500, label: "500", caption: "Noon UTC · 0.500 day" },
-  { t: 750, label: "750", caption: "0.750 day · 18h POSIX" },
+  { t: 0, label: "000", caption: "Midnight · start of the day" },
+  { t: 250, label: "250", caption: "A quarter through · morning" },
+  { t: 500, label: "500", caption: "Noon · halfway" },
+  { t: 750, label: "750", caption: "Three quarters · evening" },
 ];
 
 export function Thousand() {
@@ -38,26 +38,33 @@ export function Thousand() {
 
   return (
     <section className="section" id="day">
-      <div className="section-kicker">04 — Time of day</div>
-      <h2>1 day = 1000 chrons = 86400 POSIX seconds.</h2>
+      <div className="section-kicker">04 — The day</div>
+      <h2>A thousand chrons, so you can see how far through the day you are.</h2>
       <div className="dial-wrap">
         <div>
           <div className="prose">
             <p>
-              Sexagesimal time is a second irregular scale sitting on the calendar:
-              24 × 60 × 60, plus AM/PM writing the same numerals twice. The value
-              does not tell you the day-fraction.
+              Once the year is a clean scale, the clock is still a pile of sixties:
+              24 hours, 60 minutes, 60 seconds — and AM/PM, which writes 8:00 twice
+              a day. None of those numbers tell you, at a glance, what fraction of
+              the day has passed. 3:17 PM does not look like “a bit more than
+              six tenths of the way through.”
             </p>
             <p>
-              Time of day is a real in <code>[0, 1000)</code>. One chron is 86.4
-              POSIX seconds. <code>000</code> is midnight UTC, <code>500</code> is
-              noon, <code>250</code> is 0.25 day. The number is the progress.
+              Chron Time cuts the day into 1000. Each tick is a <strong>chron</strong>,
+              86.4 seconds — a little under a minute and a half. Midnight is{" "}
+              <code>000</code>. Noon is <code>500</code>. Two hundred fifty is a
+              quarter of the way through, morning. Seven hundred fifty is three
+              quarters, evening. The number on the dial is the progress.
             </p>
             <p>
-              10 chrons = 14.4 min. 100 chrons = 2.4 h. Durations use the same unit:
-              <code>50c</code> = <code>0.050d</code> = 5% of a day. A leap second is
-              not a distinct Chron instant; RFC 3339 <code>23:59:60</code> maps to
-              chron <code>999</code> of that UTC date.
+              Because it is decimal, the rest stays in your head. Ten chrons are
+              14.4 minutes. A hundred chrons are 2.4 hours. Durations use the same
+              unit: <code>50c</code> is fifty chrons, five percent of a day, whether
+              you add it to a Tuesday or to Year Day. A Chron day always contains
+              exactly 1000 chrons. The rare UTC leap second is not given its own
+              instant; it maps to chron <code>999</code> of that date, not to
+              midnight of the next.
             </p>
           </div>
           <div className="markers">

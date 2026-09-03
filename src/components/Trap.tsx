@@ -9,23 +9,36 @@ export function Trap() {
     <section className="section" id="story">
       <div className="grid-2">
         <div>
-          <div className="section-kicker">01 — Compatibility</div>
-          <h2>Thirteen 28-day months break civil dates.</h2>
+          <div className="section-kicker">01 — Thirteen months</div>
+          <h2>Equal months look perfect until you try to live with them.</h2>
           <div className="prose">
             <p>
-              13 × 28 = 364. Each month is four weeks, every month is the same
-              grid, and Monday can always be day 1. That is why 13-month calendars
-              keep getting proposed.
+              The usual complaint about the Gregorian calendar is that months are
+              not a unit. Some have 28 days, some 31, February sometimes 29. You
+              cannot add “three months” and know how many days you moved. A
+              long-running answer is to give the year thirteen months of 28 days
+              each: four weeks, always the same grid, Monday always day 1. You
+              could design the page once and reuse it all year.
             </p>
             <p>
-              The extra month has to be inserted — usually mid-year, often under
-              the name Sol. After that insertion, 12 May is no longer 12 May. The
-              year number is shared; the ordinal dates are not. Two labels for one
-              Gregorian day is not a system you can run next to the civil calendar.
+              Thirteen times 28 is 364, so a common year still has a leftover day,
+              and a leap year two. That part is solvable. The hard part is where
+              the thirteenth month goes. The usual proposal inserts it in the
+              middle of the year and names it something like Sol.
             </p>
             <p>
-              Chron Time keeps the Gregorian year, the leap rule, and 1 January as
-              day 1. The unit that changes is smaller than a month.
+              After that insertion, May 12 is no longer May 12. The year number is
+              still 2026, but every civil date from the insertion onward has
+              shifted. Anyone still speaking Gregorian months is talking about a
+              different day than you are. A calendar you can live on has to sit
+              next to the one the rest of the world uses, not fight it every
+              morning.
+            </p>
+            <p>
+              Chron Time’s first decision is therefore conservative: keep the
+              Gregorian year, keep the Gregorian leap rule, and keep 1 January as
+              day 1. If the written unit is going to change, it has to be smaller
+              than a month, so May 12 stays May 12.
             </p>
           </div>
         </div>
@@ -53,7 +66,7 @@ export function Trap() {
             ))}
           </div>
           <div className="crack">
-            After Sol, 12 May Gregorian maps to a different ordinal.
+            Insert Sol, and May 12 is no longer May 12.
           </div>
         </div>
       </div>

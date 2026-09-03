@@ -36,17 +36,25 @@ export function YearScale() {
   return (
     <section className="section" id="year">
       <div className="section-kicker">02 — Fortnights</div>
-      <h2>26 × 14, labeled A–Z.</h2>
+      <h2>Count fortnights, and the alphabet is the calendar.</h2>
       <p className="lede">
-        The 28-day month was the right period and the wrong written unit. Split it
-        in half: 26 fortnights, 26 letters. A01 is 1 January. Z14 is day 364.
-        12 May is still 12 May.
+        Twenty-eight days is a clean block — two weeks, never a surprise length.
+        It was the wrong thing to <em>write</em>, because a thirteenth month
+        desynchronizes every civil date. Halve it instead.
       </p>
       <div className="prose" style={{ marginBottom: 28 }}>
         <p>
-          Two fortnights are a 28-day month if you need the grouping. The written
-          date is the letter, not a month number. No thirteenth name, no shifted
-          ordinals, no table of month lengths to add across.
+          A fortnight is 14 days. There are 26 of them in 364 days, and 26 letters
+          in the alphabet. A is the first fourteen days of the year, starting 1
+          January. B is the next fourteen. Z is days 351 through 364. You do not
+          invent a thirteenth name. You write a letter.
+        </p>
+        <p>
+          Pair the letters and you still have 13 months of 28 days (AB, CD, … YZ)
+          if you want that grouping. The written date does not use a month number.
+          May 12 is still May 12 on a civil calendar; in Chron Time it is simply
+          whichever fortnight and day that date falls on, in the same year. Adding
+          across fortnights never needs a table of month lengths.
         </p>
       </div>
       <div className="year-instrument">

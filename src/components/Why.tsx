@@ -1,35 +1,40 @@
 export function Why() {
   return (
     <section className="section" id="use">
-      <div className="section-kicker">06 — Properties</div>
-      <h2>What the algebra is for.</h2>
+      <div className="section-kicker">06 — Why use it</div>
+      <h2>Same year as everyone else. Math that actually works.</h2>
       <p className="lede">
-        The Gregorian year number stays. Months, sexagesimal time, and civil
-        offsets are the parts that do not add. Chron Time replaces those parts.
+        Chron Time does not ask anyone to forget 2026. It asks whether months of
+        uneven length, a clock that counts by sixties, and zones that move twice
+        a year are earning their keep.
       </p>
       <div className="why-grid">
         <article className="card">
-          <h3>Display</h3>
+          <h3>To read</h3>
           <p>
-            Date is a letter and a day 1–14. Time is a day-fraction in chrons.
-            Zone is a meridian, so it does not jump for DST. You stay in the same
-            year as everyone else.
+            A date is a letter and a number from 1 to 14. Time is how far through
+            the day you are. Your zone does not spring forward. You can still talk
+            to someone on months and hours, because the year number matches and
+            May 12 is still May 12.
           </p>
         </article>
         <article className="card">
-          <h3>Computation</h3>
+          <h3>To compute</h3>
           <p>
-            Time of day is a real in [0, 1000). Zone is <code>round(longitude_west / 0.36)</code>.
-            Equality is identical canonical strings. Durations add through
-            fortnights, YD, and LD with no month-length table.
+            Time of day is one number, from 000 to 999. Zone is geography, not a
+            DST flag. Two instants are the same instant when their canonical
+            strings match. Adding a duration walks through fortnights, Year Day,
+            and Leap Day without asking how long “a month” is.
           </p>
         </article>
         <article className="card">
-          <h3>Interop</h3>
+          <h3>Alongside what exists</h3>
           <p>
-            Parallel to RFC 3339, not a replacement on the wire. Convert at the
-            boundary. Store canonical GMT when two instants must compare equal.
-            A civil offset is used only to find UTC; it is never the Chron zone.
+            This is not a demand that ISO 8601 vanish from APIs tomorrow. Convert
+            at the edges. Use Chron where a person is reading a clock or a duration
+            is being added. Keep RFC 3339 on the wire where the world already
+            speaks it. A civil offset is used only to find UTC — never as the
+            Chron zone.
           </p>
         </article>
       </div>

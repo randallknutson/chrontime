@@ -131,15 +131,15 @@ code, .mono { font-family: var(--font-mono); }
   font-variation-settings: "SOFT" 30, "opsz" 72;
 }
 .lede {
-  font-size: clamp(18px, 2.2vw, 24px);
+  font-size: clamp(18px, 2.2vw, 23px);
   color: var(--paper-dim);
-  max-width: 42rem;
+  max-width: 44rem;
   font-weight: 300;
 }
 .prose {
-  max-width: 40rem;
+  max-width: 44rem;
   color: var(--paper-dim);
-  font-size: 17px;
+  font-size: 17.5px;
 }
 .prose p { margin: 0 0 1.1em; }
 .prose strong { color: var(--paper); font-weight: 500; }

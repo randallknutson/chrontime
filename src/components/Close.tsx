@@ -2,17 +2,18 @@ export function Close() {
   return (
     <section className="section" id="spec">
       <div className="section-kicker">09 — Spec</div>
-      <h2>Draft notation. Normative grammar in the spec.</h2>
+      <h2>This page is the tour. The spec is the contract.</h2>
       <div className="prose">
         <p>
-          Profiles, the leap rule, leftover days, the POSIX scale, and the zone
-          sign are defined in the draft. A TypeScript implementation is{" "}
-          <code>@chrontime/chrontime</code>.
+          The grammar, the leap rule, the leftover days, the three profiles, and
+          the sign of the zone are written up as a draft specification. There is a
+          TypeScript library, <code>@chrontime/chrontime</code>, that implements it.
         </p>
         <p>
-          Chron Time is a parallel representation, not a claim that RFC 3339 is
-          going away. The open items — Monday-aligned A01, month names — are listed
-          in the spec, not papered over here.
+          Chron Time is meant to sit next to RFC 3339, not to erase it. A few
+          questions are still open on purpose: whether A01 should eventually
+          always be Monday, and whether the thirteen two-fortnight months should
+          have names. Those are listed in the spec rather than implied as finished.
         </p>
       </div>
       <div className="close-links">

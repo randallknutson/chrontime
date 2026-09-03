@@ -61,10 +61,11 @@ export function Playground() {
   return (
     <section className="section" id="try">
       <div className="section-kicker">08 — Convert</div>
-      <h2>UTC ↔ Chron</h2>
+      <h2>Try a date.</h2>
       <p className="lede">
-        Instant, date-only, and time-only strings parse. Output is presentation,
-        interchange, and canonical for the meridian selected above.
+        The clock at the top is live. These boxes convert in either direction: a
+        UTC datetime, or a Chron string — an instant, a date, or a time of day.
+        The meridian follows whatever you picked on the map.
       </p>
       <div className="play">
         <div className="play-card">

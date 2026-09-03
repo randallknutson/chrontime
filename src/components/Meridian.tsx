@@ -44,20 +44,22 @@ export function Meridian() {
 
   return (
     <section className="section" id="earth">
-      <div className="section-kicker">05 — Zone</div>
-      <h2>Zone is west longitude, in chrons.</h2>
+      <div className="section-kicker">05 — Longitude</div>
+      <h2>Your zone is where you stand, not what a law named.</h2>
       <div className="prose">
         <p>
-          Civil zones are political: IANA names, borders, then DST. Two sites at
-          the same longitude can disagree, and one site can disagree with itself
-          in April. A Chron zone is a longitude band. It does not move when a
-          clock law does.
+          Civil time zones follow borders, then jump an hour because a statute
+          says so. Two towns on the same longitude can officially disagree, and
+          the same town can disagree with itself in April. Converting local time
+          to GMT becomes a lookup — which offset, which season — instead of a
+          calculation.
         </p>
         <p>
-          At chron resolution, <code>zone = round(longitude_west / 0.36)</code>.
-          One chron of zone is 0.36°. West is plus, east is minus, <code>Z</code> is
-          Greenwich. The sign is the opposite of ISO 8601 on purpose: you always
-          complete the equation toward GMT.
+          A Chron zone is a band of longitude. GPS already knows which one you are
+          standing in. The Earth turns 360° in 1000 chrons, so one chron of zone
+          is 0.36° of longitude:{" "}
+          <code>zone = round(west longitude / 0.36)</code>. Greenwich is{" "}
+          <code>Z</code>, or +000. West of Greenwich is plus. East is minus.
         </p>
       </div>
       <div className="equation" style={{ marginTop: 22, marginBottom: 22 }}>
@@ -71,10 +73,15 @@ export function Meridian() {
       </div>
       <div className="prose">
         <p>
-          Coarser grids are 10 chrons (3.6°) and 100 chrons (36°). Refining a zone
-          moves chrons across the sign; <code>100+200</code> and <code>000+300</code>{" "}
-          are the same time of day as <code>300Z</code>. Do not copy a civil offset
-          such as CDT <code>−05:00</code> into the zone field.
+          That sign is the opposite of ISO 8601 on purpose. Civil time uses
+          UTC + offset = local, so Chicago in winter is −06:00. Chron Time uses
+          local + zone = GMT: you add if you are west, subtract if you are east,
+          and you have Greenwich. You can write the zone coarsely (36° bands, 100
+          chrons) or finely (one chron). Changing precision only slides the split
+          — <code>100+200</code> and <code>000+300</code> are the same clock as{" "}
+          <code>300Z</code>. What you must not do is paste a civil offset such as
+          CDT −05:00 into the Chron zone field. That would smuggle daylight saving
+          back in.
         </p>
       </div>
 

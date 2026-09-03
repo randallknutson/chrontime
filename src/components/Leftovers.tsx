@@ -1,27 +1,35 @@
 export function Leftovers() {
   return (
     <section className="section" id="leftovers">
-      <div className="section-kicker">03 — Remainder</div>
-      <h2>YD and LD sit after Z. Every letter stays 14.</h2>
+      <div className="section-kicker">03 — Leftover days</div>
+      <h2>The extra days get names so the letters never stretch.</h2>
       <div className="prose">
         <p>
-          26 × 14 = 364. A common year has one day left; a leap year has two. They
-          are not absorbed into Z and they are not a 15-day fortnight. Day 365 is
-          <strong> Year Day</strong> (<code>YD</code>). Day 366 is <strong>Leap Day</strong> (<code>LD</code>),
-          leap years only. Both follow <code>Z14</code>.
+          Twenty-six fortnights account for 364 days. A common year has 365; a
+          leap year has 366. Those leftovers could be stuffed into Z, making one
+          fortnight 15 or 16 days. That would undo the design. A letter would no
+          longer mean fourteen days, and you would be back to a special case at
+          the end of every year.
         </p>
         <p>
-          Neither belongs to a fortnight, month, or week. That invariant is the
-          point: <code>R</code> is always 14 days, in every year.
+          So the leftovers sit after Z and they have names. <strong>Year Day</strong>{" "}
+          (<code>YD</code>) is day 365, every year. <strong>Leap Day</strong>{" "}
+          (<code>LD</code>) is day 366, and only exists in a leap year. Neither one
+          belongs to a fortnight, a month, or a week. A is always 14 days. R is
+          always 14 days. Z is always 14 days.
         </p>
         <p>
-          Gregorian 29 February is not Leap Day. In 2020 it is <code>2020E04</code>,
-          an ordinary day in E. Chron <code>LD</code> is 31 December of a leap year.
+          This is easy to get backwards. Chron Leap Day is not February 29.
+          Gregorian 29 February is an ordinary day in fortnight E — in 2020 it is{" "}
+          <code>2020E04</code>. Leap Day is the extra day at the <em>end</em> of a
+          leap year, 31 December, after Year Day.
         </p>
         <p>
-          A01 is not yet pinned to Monday. Doing that now would desynchronize
-          weekday names from the civil week. YD and LD are already outside the week,
-          so that alignment is a later, global switch — not a rewrite of A–Z.
+          Fortnights do not yet start on Monday. They could: Year Day and Leap Day
+          already stand outside the week, waiting for that. Doing it now would
+          make “Wednesday” mean a different civil weekday than it does on your
+          phone. Until both systems can move together, weekdays stay hitched to
+          the civil week so the two counts do not drift apart.
         </p>
       </div>
       <div className="yd-row">

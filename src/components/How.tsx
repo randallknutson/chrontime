@@ -1,12 +1,12 @@
 export function How() {
   return (
     <section className="section" id="how">
-      <div className="section-kicker">07 — Notation</div>
-      <h2>Four kinds. Three profiles.</h2>
+      <div className="section-kicker">07 — How to write it</div>
+      <h2>One string, read left to right.</h2>
       <p className="lede">
-        Instant <code>2026-08-30T22:17:00Z</code> at Carrollton (96.9°W, zone{" "}
-        <code>+269</code>) is the interchange string below. Canonical form is that
-        instant reduced to GMT.
+        Take 30 August 2026, 22:17 UTC, in Carrollton, Texas — about 96.9° west,
+        zone +269. The interchange form is the string below. Add the last two
+        fields and you have GMT.
       </p>
       <div className="explode" aria-label="Exploded Chron string">
         <div className="explode-part">
@@ -34,38 +34,51 @@ export function How() {
       <p className="note" style={{ textAlign: "center", marginBottom: 28 }}>
         659.472 + 269 = 928.472Z
       </p>
+      <div className="prose" style={{ marginBottom: 28 }}>
+        <p>
+          Year, letter, day, then a colon, then how far through the local day,
+          then the zone. That is an <strong>instant</strong> — a particular moment.
+          The same instant can be written three ways, depending on who it is for.
+        </p>
+      </div>
       <div className="profile-grid">
         <article className="card">
           <h3>Presentation</h3>
           <p>
-            For people. Day padding may drop (<code>R4</code>). Zone may be omitted
-            when the meridian is already known — omitted is not GMT.
+            For people. You can drop the extra zero on the day, and skip the zone
+            when everyone already knows the meridian. An omitted zone is not GMT
+            unless you are actually in Greenwich.
           </p>
           <div className="sample">2026R4:659</div>
         </article>
         <article className="card">
           <h3>Interchange</h3>
           <p>
-            For storage and transmission. Four-digit year, two-digit day, zone or{" "}
-            <code>Z</code> required. Up to 12 fractional chrons.
+            For storage and sending. Year is four digits, day is two, and a zone
+            or Z is required, so a parser never has to guess which meridian you
+            meant.
           </p>
           <div className="sample">2026R04:659.472+269</div>
         </article>
         <article className="card">
           <h3>Canonical</h3>
           <p>
-            For equality. Reduced to GMT, rounded to 0.001 chron, written with{" "}
-            <code>Z</code>. Same text if and only if the same instant.
+            For equality. Reduce to GMT, round to a thousandth of a chron, write
+            Z. Two instants are the same instant if and only if these strings
+            match.
           </p>
           <div className="sample">2026R04:928.472Z</div>
         </article>
       </div>
       <div className="prose" style={{ marginTop: 36 }}>
         <p>
-          A string with <code>:</code> is an instant. Year plus fortnight /{" "}
-          <code>YD</code> / <code>LD</code> and no colon is a date-only — a calendar
-          day, not midnight. Otherwise a leading time is time-only. A <code>c</code>{" "}
-          or <code>d</code> suffix is a duration (<code>50c</code>, <code>3d200c</code>).
+          Not every Chron string is an instant. <code>2026R04</code> is a{" "}
+          <strong>date-only</strong> — a calendar day, not midnight.{" "}
+          <code>500Z</code> is a <strong>time-only</strong> — noon GMT, every day.{" "}
+          <code>50c</code> or <code>3d200c</code> is a <strong>duration</strong>,
+          a span rather than a point. If the string contains a colon, it is an
+          instant. If it ends in <code>c</code> or <code>d</code>, it is a
+          duration. A year plus a letter (or YD / LD) with no colon is a date.
         </p>
       </div>
       <pre className="snippet">{`npm install @chrontime/chrontime
