@@ -1,17 +1,18 @@
 export function Close() {
   return (
     <section className="section" id="spec">
-      <div className="section-kicker">09 — A living draft</div>
-      <h2>The alphabet is the calendar. The rest is the equation.</h2>
+      <div className="section-kicker">09 — Spec</div>
+      <h2>Draft notation. Normative grammar in the spec.</h2>
       <div className="prose">
         <p>
-          Chron Time is specified as a notation: presentation for people,
-          interchange for machines, canonical for equality. The grammar, the leap
-          rule, the leftover days, and the sign of the zone are in the draft spec.
+          Profiles, the leap rule, leftover days, the POSIX scale, and the zone
+          sign are defined in the draft. A TypeScript implementation is{" "}
+          <code>@chrontime/chrontime</code>.
         </p>
         <p>
-          There is a TypeScript implementation. This page is an invitation to try
-          the system on, not a claim that the world has already switched.
+          Chron Time is a parallel representation, not a claim that RFC 3339 is
+          going away. The open items — Monday-aligned A01, month names — are listed
+          in the spec, not papered over here.
         </p>
       </div>
       <div className="close-links">

@@ -1,37 +1,35 @@
 export function Why() {
   return (
     <section className="section" id="use">
-      <div className="section-kicker">06 — What it is for</div>
-      <h2>A calendar you can think in. A time you can add.</h2>
+      <div className="section-kicker">06 — Properties</div>
+      <h2>What the algebra is for.</h2>
       <p className="lede">
-        Chron Time does not ask the world to forget 2026. It asks whether the rest
-        of the machinery — irregular months, sexagesimal clocks, political zones —
-        is earning its keep.
+        The Gregorian year number stays. Months, sexagesimal time, and civil
+        offsets are the parts that do not add. Chron Time replaces those parts.
       </p>
       <div className="why-grid">
         <article className="card">
-          <h3>For people</h3>
+          <h3>Display</h3>
           <p>
-            The date is a letter and a number from 1 to 14. The time is how far
-            through the day you are. Nothing jumps an hour because a committee
-            met. You can live in the same year as everyone else without living in
-            their clutter.
+            Date is a letter and a day 1–14. Time is a day-fraction in chrons.
+            Zone is a meridian, so it does not jump for DST. You stay in the same
+            year as everyone else.
           </p>
         </article>
         <article className="card">
-          <h3>For software</h3>
+          <h3>Computation</h3>
           <p>
-            Time of day is a real number in [0, 1000). Zone is longitude, stable.
+            Time of day is a real in [0, 1000). Zone is <code>round(longitude_west / 0.36)</code>.
             Equality is identical canonical strings. Durations add through
-            fortnights, Year Day, and Leap Day without a month-length table.
+            fortnights, YD, and LD with no month-length table.
           </p>
         </article>
         <article className="card">
-          <h3>For the wire</h3>
+          <h3>Interop</h3>
           <p>
-            It is a parallel representation, not a demand that RFC 3339 disappear.
-            Convert at the edges. Store canonical GMT when two instants must be
-            the same instant. Keep civil timestamps where the world still needs them.
+            Parallel to RFC 3339, not a replacement on the wire. Convert at the
+            boundary. Store canonical GMT when two instants must compare equal.
+            A civil offset is used only to find UTC; it is never the Chron zone.
           </p>
         </article>
       </div>

@@ -2,10 +2,10 @@ import { civilClockFromChrons, formatTime } from "../chron";
 import { useClock } from "../context";
 
 const MARKS = [
-  { t: 0, label: "000", caption: "Midnight" },
-  { t: 250, label: "250", caption: "A quarter through · morning" },
-  { t: 500, label: "500", caption: "Noon" },
-  { t: 750, label: "750", caption: "Three quarters · evening" },
+  { t: 0, label: "000", caption: "Midnight UTC · 0.000 day" },
+  { t: 250, label: "250", caption: "0.250 day · 6h POSIX" },
+  { t: 500, label: "500", caption: "Noon UTC · 0.500 day" },
+  { t: 750, label: "750", caption: "0.750 day · 18h POSIX" },
 ];
 
 export function Thousand() {
@@ -38,24 +38,26 @@ export function Thousand() {
 
   return (
     <section className="section" id="day">
-      <div className="section-kicker">04 — Then the clock was still ugly</div>
-      <h2>A thousand steps from midnight to midnight.</h2>
+      <div className="section-kicker">04 — Time of day</div>
+      <h2>1 day = 1000 chrons = 86400 POSIX seconds.</h2>
       <div className="dial-wrap">
         <div>
           <div className="prose">
             <p>
-              Once the year was a clean scale, the day was still a heap of sixties.
-              Morning and evening share the same numerals. You cannot glance at a
-              civil clock and see how much of the day is gone.
+              Sexagesimal time is a second irregular scale sitting on the calendar:
+              24 × 60 × 60, plus AM/PM writing the same numerals twice. The value
+              does not tell you the day-fraction.
             </p>
             <p>
-              Chron Time cuts the day into <strong>1000 chrons</strong>. One chron is
-              86.4 seconds. 000 is midnight. 500 is noon. 250 is a quarter of the way
-              through — morning. 750 is evening. The number <em>is</em> the progress.
+              Time of day is a real in <code>[0, 1000)</code>. One chron is 86.4
+              POSIX seconds. <code>000</code> is midnight UTC, <code>500</code> is
+              noon, <code>250</code> is 0.25 day. The number is the progress.
             </p>
             <p>
-              10 chrons are 14.4 minutes. 100 chrons are 2.4 hours. Durations are
-              the same unit: <code>50c</code> is five percent of a day, every day.
+              10 chrons = 14.4 min. 100 chrons = 2.4 h. Durations use the same unit:
+              <code>50c</code> = <code>0.050d</code> = 5% of a day. A leap second is
+              not a distinct Chron instant; RFC 3339 <code>23:59:60</code> maps to
+              chron <code>999</code> of that UTC date.
             </p>
           </div>
           <div className="markers">

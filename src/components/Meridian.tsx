@@ -44,18 +44,20 @@ export function Meridian() {
 
   return (
     <section className="section" id="earth">
-      <div className="section-kicker">05 — Take the legislature out of the clock</div>
-      <h2>Your zone is a meridian, not a statute.</h2>
+      <div className="section-kicker">05 — Zone</div>
+      <h2>Zone is west longitude, in chrons.</h2>
       <div className="prose">
         <p>
-          Civil time zones follow borders, then jump because a law says so. Two
-          towns on the same longitude can disagree, and the same town can disagree
-          with itself in April.
+          Civil zones are political: IANA names, borders, then DST. Two sites at
+          the same longitude can disagree, and one site can disagree with itself
+          in April. A Chron zone is a longitude band. It does not move when a
+          clock law does.
         </p>
         <p>
-          A Chron zone is a band of longitude. GPS already knows which one you are
-          standing in; the internet made that boring. West of Greenwich is plus,
-          east is minus. The arithmetic is the whole design:
+          At chron resolution, <code>zone = round(longitude_west / 0.36)</code>.
+          One chron of zone is 0.36°. West is plus, east is minus, <code>Z</code> is
+          Greenwich. The sign is the opposite of ISO 8601 on purpose: you always
+          complete the equation toward GMT.
         </p>
       </div>
       <div className="equation" style={{ marginTop: 22, marginBottom: 22 }}>
@@ -69,8 +71,10 @@ export function Meridian() {
       </div>
       <div className="prose">
         <p>
-          Plus, you add. Minus, you subtract. To refine a coarse zone, slide chrons
-          across the sign. The two sides always complete the same Greenwich time.
+          Coarser grids are 10 chrons (3.6°) and 100 chrons (36°). Refining a zone
+          moves chrons across the sign; <code>100+200</code> and <code>000+300</code>{" "}
+          are the same time of day as <code>300Z</code>. Do not copy a civil offset
+          such as CDT <code>−05:00</code> into the zone field.
         </p>
       </div>
 
@@ -133,10 +137,10 @@ export function Meridian() {
         </div>
         <p className="note">
           {extra === 0
-            ? "Same instant. Coarser bands just move the split."
+            ? "Same GMT. Precision only changes how the sum is split."
             : extra < 0
-              ? "Local is still yesterday at this meridian; the sum is still this GMT."
-              : "Local has already crossed midnight; the sum is still this GMT."}
+              ? "Local date has borrowed a day; the GMT is unchanged."
+              : "Local date has carried a day; the GMT is unchanged."}
         </p>
       </div>
     </section>

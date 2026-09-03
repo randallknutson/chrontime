@@ -50,19 +50,20 @@ export function Hero() {
           <span className="hero-date-zone">{zoneLabel}</span>
         </div>
         <div className="hero-string">{formatInterchange(now)}</div>
-        <h1>Twenty-six fortnights. One letter each.</h1>
+        <h1>26 fortnights. 1000 chrons. local + zone = GMT.</h1>
         <p className="sub">
-          A year the world already numbers, a day you can divide by tens, and a zone that
-          is simply where you stand.
+          Chron Time keeps the Gregorian year and leap rule, then replaces months,
+          the 24-hour clock, and civil time zones with units you can add and divide
+          by ten.
         </p>
         <div className="hero-actions">
-          <a className="btn solid" href="#story">See why</a>
+          <a className="btn solid" href="#story">How it is built</a>
           <button className="btn" type="button" onClick={requestLocation}>
             {locating ? "Finding meridian…" : located ? "Located" : "Use my longitude"}
           </button>
         </div>
       </div>
-      <div className="scroll-cue">Scroll the year</div>
+      <div className="scroll-cue">The design</div>
     </section>
   );
 }

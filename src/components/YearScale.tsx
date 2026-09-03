@@ -35,19 +35,18 @@ export function YearScale() {
 
   return (
     <section className="section" id="year">
-      <div className="section-kicker">02 — The lightbulb</div>
-      <h2>Keep the year. Count fortnights.</h2>
+      <div className="section-kicker">02 — Fortnights</div>
+      <h2>26 × 14, labeled A–Z.</h2>
       <p className="lede">
-        Twenty-six blocks of fourteen days. Twenty-six letters. The Gregorian year
-        number stays; May 12 is still May 12. You just stop pretending the months
-        were ever a unit.
+        The 28-day month was the right period and the wrong written unit. Split it
+        in half: 26 fortnights, 26 letters. A01 is 1 January. Z14 is day 364.
+        12 May is still 12 May.
       </p>
       <div className="prose" style={{ marginBottom: 28 }}>
         <p>
-          A month of four weeks was the right instinct and the wrong grain. Split
-          those months in half and the year becomes an alphabet: A is the first
-          fourteen days of January, Z the last complete fourteen of December. You
-          do not invent a thirteenth name. You write a letter.
+          Two fortnights are a 28-day month if you need the grouping. The written
+          date is the letter, not a month number. No thirteenth name, no shifted
+          ordinals, no table of month lengths to add across.
         </p>
       </div>
       <div className="year-instrument">
