@@ -3,67 +3,94 @@ import {
   formatInterchange,
   formatTime,
   formatZone,
+  toUtc,
 } from "../chron";
 import { useClock } from "../context";
-import { TickRing } from "./TickRing";
 
 export function Hero() {
   const { now, place, located, locating, requestLocation } = useClock();
   const cal = calendarFromDayOfYear(now.year, now.dayOfYear);
-  const zoneLabel = formatZone(now.zone);
+  const utc = toUtc(now);
+  const civilDate = utc.toLocaleDateString(undefined, {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+  const civilTime = utc.toLocaleTimeString(undefined, {
+    hour: "numeric",
+    minute: "2-digit",
+    second: "2-digit",
+    timeZoneName: "short",
+  });
+  const pct = now.time / 10;
 
   return (
-    <section className="hero" id="now">
-      <div className="hero-sky" />
-      <svg className="meridians" viewBox="0 0 800 800" aria-hidden="true">
-        <g fill="none" stroke="rgba(239,230,214,0.14)" strokeWidth="0.8">
-          <ellipse cx="400" cy="400" rx="180" ry="260" />
-          <ellipse cx="400" cy="400" rx="120" ry="260" />
-          <ellipse cx="400" cy="400" rx="60" ry="260" />
-          <ellipse cx="400" cy="400" rx="260" ry="180" />
-          <ellipse cx="400" cy="400" rx="260" ry="120" />
-          <line x1="400" y1="140" x2="400" y2="660" />
-          <line x1="140" y1="400" x2="660" y2="400" />
-          <circle cx="400" cy="400" r="260" />
-        </g>
-      </svg>
-      <div className="hero-copy">
-        <div className="hero-clock">
-          <TickRing time={now.time} />
-          <div className="hero-clock-face">
-            <div className="hero-time">{formatTime(now.time, 1)}</div>
-            <div className="hero-time-label">chrons</div>
+    <section className="hero" id="top">
+      <div className="wrap hero-grid">
+        <div className="hero-copy">
+          <p className="eyebrow">Chron Time · a draft standard</p>
+          <h1>
+            Time is harder than it <em>needs</em> to be.
+          </h1>
+          <p className="hero-sub">
+            Months come in four lengths. The clock counts in sixties, then
+            twelves, then twice. Time zones move when a government votes. Chron
+            Time keeps the one part everyone agrees on, the year, and rebuilds the
+            rest so dates and times are plain arithmetic.
+          </p>
+          <div className="actions">
+            <a className="btn primary" href="#problem">See what’s broken</a>
+            <a className="btn" href="#calendar">Skip to the fix</a>
           </div>
         </div>
-        <div className="hero-date">
-          <span className="hero-date-year">{now.year}</span>
-          {cal.fortnight ? (
-            <>
-              <span className="hero-date-letter">{cal.fortnight}</span>
-              <span className="hero-date-day">{cal.day}</span>
-            </>
-          ) : (
-            <span className="hero-date-letter">{cal.day}</span>
-          )}
-          <span className="hero-date-dot">·</span>
-          <span className="hero-date-place">{place.name}</span>
-          <span className="hero-date-zone">{zoneLabel}</span>
-        </div>
-        <div className="hero-string">{formatInterchange(now)}</div>
-        <h1>A date and time you can add in one equation.</h1>
-        <p className="sub">
-          Chron Time keeps the year the world already uses, then makes the rest
-          regular: 26 fortnights instead of months, 1000 chrons instead of hours,
-          and a zone taken from longitude. Local time plus zone is GMT.
-        </p>
-        <div className="hero-actions">
-          <a className="btn solid" href="#story">How it was designed</a>
-          <button className="btn" type="button" onClick={requestLocation}>
-            {locating ? "Finding meridian…" : located ? "Located" : "Use my longitude"}
-          </button>
+
+        <div className="compare">
+          <div className="compare-row old">
+            <div className="compare-label">How we write it now</div>
+            <div className="compare-date">{civilDate}</div>
+            <div className="compare-time">{civilTime}</div>
+            <div className="compare-note">
+              Four month lengths · AM and PM · an offset set by law
+            </div>
+          </div>
+          <div className="compare-row new">
+            <div className="compare-label">
+              Chron Time
+              <span>
+                {place.name} · {formatZone(now.zone)}
+              </span>
+            </div>
+            <div className="compare-date mono">
+              {now.year}
+              <b>{cal.fortnight || cal.day}</b>
+              {cal.fortnight ? cal.day : null}
+            </div>
+            <div className="compare-time mono">
+              {formatTime(now.time, 1)}
+              <small>chrons</small>
+            </div>
+            <div className="daybar" aria-hidden="true">
+              <i style={{ width: `${pct}%` }} />
+            </div>
+            <div className="compare-note">
+              {cal.fortnight
+                ? `Fortnight ${cal.fortnight}, day ${cal.day} of 14 · ${pct.toFixed(1)}% through the day`
+                : `${cal.day === "YD" ? "Year Day" : "Leap Day"} · ${pct.toFixed(1)}% through the day`}
+            </div>
+          </div>
+          <div className="compare-foot">
+            <code>{formatInterchange(now)}</code>
+            <button className="link-btn" type="button" onClick={requestLocation}>
+              {locating
+                ? "Finding your meridian…"
+                : located
+                  ? `At ${place.region}`
+                  : "Showing Greenwich · use my longitude"}
+            </button>
+          </div>
         </div>
       </div>
-      <div className="scroll-cue">Start with the calendar</div>
     </section>
   );
 }

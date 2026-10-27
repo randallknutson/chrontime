@@ -39,7 +39,7 @@ export function Playground() {
         const utc = toUtc(parsed.value);
         const g = gregorianFromDayOfYear(parsed.value.year, parsed.value.dayOfYear);
         return {
-          text: `${formatPresentation(parsed.value)} · ${formatInterchange(parsed.value)} · ${formatCanonical(parsed.value)}`,
+          text: `${formatInterchange(parsed.value)} → ${formatCanonical(parsed.value)}`,
           extra: `${utc.toISOString()} · local date ${formatGregorian(g)}`,
         };
       }
@@ -59,69 +59,67 @@ export function Playground() {
   }, [chronValue, place.zone]);
 
   return (
-    <section className="section" id="try">
-      <div className="section-kicker">08 — Convert</div>
-      <h2>Try a date.</h2>
-      <p className="lede">
-        The clock at the top is live. These boxes convert in either direction: a
-        UTC datetime, or a Chron string — an instant, a date, or a time of day.
-        The meridian follows whatever you picked on the map.
-      </p>
-      <div className="play">
-        <div className="play-card">
-          <h3>Civil UTC → Chron</h3>
-          <label className="field">
-            UTC datetime
-            <input
-              type="datetime-local"
-              value={utcValue}
-              onChange={(e) => setUtcValue(e.target.value)}
-            />
-          </label>
-          <button className="btn" type="button" onClick={() => setUtcValue(toDatetimeLocalUtc(new Date()))}>
-            Use now
-          </button>
-          {fromCivil && "error" in fromCivil ? (
-            <div className="output error">{fromCivil.error}</div>
-          ) : fromCivil ? (
-            <div className="output">
-              {formatPresentation(fromCivil.instant)}
-              <br />
-              {formatInterchange(fromCivil.instant)}
-              <br />
-              {formatCanonical(fromCivil.instant)}
-            </div>
-          ) : null}
-          <p className="note">Converted at {place.name} ({formatZone(place.zone)}).</p>
+    <section className="section tight" id="try">
+      <div className="wrap">
+        <div className="section-head">
+          <h2>Convert anything.</h2>
+          <p className="lede">
+            Both directions, at the meridian you picked above. Paste an instant, a
+            date, or a time of day.
+          </p>
         </div>
-        <div className="play-card">
-          <h3>Chron → civil</h3>
-          <label className="field">
-            Chron string
-            <input
-              value={chronValue}
-              onChange={(e) => setChronValue(e.target.value)}
-              spellCheck={false}
-              placeholder="2026R4:659+269"
-            />
-          </label>
-          <button
-            className="btn"
-            type="button"
-            onClick={() => setChronValue(formatInterchange(now))}
-          >
-            Use the live instant
-          </button>
-          {fromChron && "error" in fromChron ? (
-            <div className="output error">{fromChron.error}</div>
-          ) : fromChron ? (
-            <div className="output">
-              {fromChron.text}
-              <br />
-              {fromChron.extra}
-            </div>
-          ) : null}
-          <p className="note">Date-only, time-only, and instants all parse.</p>
+        <div className="play">
+          <div className="play-card">
+            <h3>Civil UTC → Chron</h3>
+            <label className="field">
+              UTC date and time
+              <input
+                type="datetime-local"
+                value={utcValue}
+                onChange={(e) => setUtcValue(e.target.value)}
+              />
+            </label>
+            <button className="chip" type="button" onClick={() => setUtcValue(toDatetimeLocalUtc(new Date()))}>
+              Use now
+            </button>
+            {fromCivil && "error" in fromCivil ? (
+              <div className="output error">{fromCivil.error}</div>
+            ) : fromCivil ? (
+              <div className="output">
+                {formatPresentation(fromCivil.instant)}
+                <br />
+                {formatInterchange(fromCivil.instant)}
+                <br />
+                {formatCanonical(fromCivil.instant)}
+              </div>
+            ) : null}
+            <p className="small muted">At {place.name} ({formatZone(place.zone)}).</p>
+          </div>
+          <div className="play-card">
+            <h3>Chron → civil</h3>
+            <label className="field">
+              Chron string
+              <input
+                value={chronValue}
+                onChange={(e) => setChronValue(e.target.value)}
+                spellCheck={false}
+                placeholder="2026R4:659+269"
+              />
+            </label>
+            <button className="chip" type="button" onClick={() => setChronValue(formatInterchange(now))}>
+              Use the live instant
+            </button>
+            {fromChron && "error" in fromChron ? (
+              <div className="output error">{fromChron.error}</div>
+            ) : fromChron ? (
+              <div className="output">
+                {fromChron.text}
+                <br />
+                {fromChron.extra}
+              </div>
+            ) : null}
+            <p className="small muted">Instants, dates, and times of day all parse.</p>
+          </div>
         </div>
       </div>
     </section>

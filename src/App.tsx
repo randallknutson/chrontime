@@ -1,32 +1,30 @@
+import { Calendar } from "./components/Calendar";
+import { Clock } from "./components/Clock";
 import { Close } from "./components/Close";
+import { Developers } from "./components/Developers";
 import { Footer } from "./components/Footer";
+import { Fortnights } from "./components/Fortnights";
 import { Hero } from "./components/Hero";
-import { How } from "./components/How";
 import { Leftovers } from "./components/Leftovers";
-import { Meridian } from "./components/Meridian";
 import { Nav } from "./components/Nav";
 import { Playground } from "./components/Playground";
-import { Thousand } from "./components/Thousand";
-import { Trap } from "./components/Trap";
-import { Why } from "./components/Why";
-import { YearScale } from "./components/YearScale";
+import { Problem } from "./components/Problem";
+import { Zones } from "./components/Zones";
 import { ClockProvider } from "./context";
 
 export function App() {
   return (
     <ClockProvider>
-      <div className="grain" aria-hidden="true" />
-      <div className="vignette" aria-hidden="true" />
       <Nav />
       <main>
         <Hero />
-        <Trap />
-        <YearScale />
+        <Problem />
+        <Calendar />
+        <Fortnights />
         <Leftovers />
-        <Thousand />
-        <Meridian />
-        <Why />
-        <How />
+        <Clock />
+        <Zones />
+        <Developers />
         <Playground />
         <Close />
       </main>

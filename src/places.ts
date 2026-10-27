@@ -14,6 +14,7 @@ function place(id: string, name: string, region: string, west: number): Place {
 
 export const PLACES: Place[] = [
   place("honolulu", "Honolulu", "157.8°W", 157.86),
+  place("phoenix", "Phoenix", "112.1°W", 112.07),
   place("carrollton", "Carrollton", "96.9°W", 96.89),
   place("chicago", "Chicago", "87.6°W", 87.63),
   place("greenwich", "Greenwich", "0°", 0),

@@ -1,29 +1,51 @@
+const POINTS = [
+  {
+    h: "Same year as everyone else",
+    p: "2026 is still 2026, and 12 May is still 12 May. You can talk to anyone in months and hours, and convert when you need to.",
+  },
+  {
+    h: "Convert at the edges",
+    p: "Keep RFC 3339 on the wire where systems already speak it. Use Chron where a person reads a clock or code adds a duration.",
+  },
+  {
+    h: "Geography, not law",
+    p: "A civil offset is only ever used to find UTC. It never becomes the Chron zone, so daylight saving can’t sneak back in.",
+  },
+];
+
 export function Close() {
   return (
-    <section className="section" id="spec">
-      <div className="section-kicker">09 — Spec</div>
-      <h2>This page is the tour. The spec is the contract.</h2>
-      <div className="prose">
-        <p>
-          The grammar, the leap rule, the leftover days, the three profiles, and
-          the sign of the zone are written up as a draft specification. There is a
-          TypeScript library, <code>@chrontime/chrontime</code>, that implements it.
+    <section className="section close" id="spec">
+      <div className="wrap">
+        <div className="section-head center">
+          <p className="kicker">A better way to keep time</p>
+          <h2>
+            It runs <em>alongside</em> the clock you already have.
+          </h2>
+        </div>
+        <div className="close-grid">
+          {POINTS.map((pt) => (
+            <article key={pt.h}>
+              <h3>{pt.h}</h3>
+              <p>{pt.p}</p>
+            </article>
+          ))}
+        </div>
+        <p className="center muted narrow-c">
+          The grammar, leap rule, spare days, profiles, and zone sign are written
+          up as a draft specification, with a TypeScript implementation. Two
+          questions are deliberately open: whether A1 should always be a Monday,
+          and whether the thirteen two-fortnight months should get names.
         </p>
-        <p>
-          Chron Time is meant to sit next to RFC 3339, not to erase it. A few
-          questions are still open on purpose: whether A01 should eventually
-          always be Monday, and whether the thirteen two-fortnight months should
-          have names. Those are listed in the spec rather than implied as finished.
-        </p>
-      </div>
-      <div className="close-links">
-        <a className="btn solid" href="/spec.html">Read the spec</a>
-        <a className="btn" href="https://github.com/randallknutson/chrontime.js">
-          @chrontime/chrontime
-        </a>
-        <a className="btn" href="https://github.com/randallknutson/chrontime">
-          This site
-        </a>
+        <div className="actions center">
+          <a className="btn primary" href="/spec.html">Read the spec</a>
+          <a className="btn" href="https://github.com/randallknutson/chrontime.js">
+            @chrontime/chrontime
+          </a>
+          <a className="btn" href="https://github.com/randallknutson/chrontime">
+            Site source
+          </a>
+        </div>
       </div>
     </section>
   );
