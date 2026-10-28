@@ -3,7 +3,7 @@ const PUZZLES = [
     act: "Calendar",
     href: "#calendar",
     q: "What’s one month after January 31?",
-    a: "February 28. Or March 3. Or March 2 in a leap year. It depends on which library you ask.",
+    a: "February 28. Or March 3. Or March 2 in a leap year. It depends on which app you ask.",
   },
   {
     act: "Calendar",

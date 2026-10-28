@@ -6,7 +6,7 @@ export function Footer() {
       <div className="wrap footer-inner">
         <span className="brand">
           <Mark />
-          Chron Time · draft
+          Chron Time
         </span>
         <span className="mono">local + zone = GMT</span>
       </div>

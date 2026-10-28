@@ -95,14 +95,14 @@ export function Zones() {
           <span>GMT</span>
         </div>
         <p className="center muted narrow-c">
-          The sign is the opposite of ISO 8601 on purpose. Civil time says
-          UTC + offset = local. Chron Time says local + zone = GMT: add if you’re
-          west, subtract if you’re east, and you’re at Greenwich.
+          One rule to remember: add if you’re west, subtract if you’re east, and
+          you have the time at Greenwich. No lookup table, and no daylight saving
+          to check.
         </p>
 
         <div className="instrument">
           <div className="instrument-head">
-            <h3>Pick a meridian</h3>
+            <h3>Find your zone</h3>
             <div className="precision" role="group" aria-label="Zone precision">
               {([100, 10, 1] as Snap[]).map((s) => (
                 <button

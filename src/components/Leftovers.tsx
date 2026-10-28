@@ -23,10 +23,9 @@ export function Leftovers() {
                 Leap Day is the extra day at the very end of a leap year.
               </p>
               <p className="muted">
-                Fortnights don’t start on Monday yet. Since Year Day and Leap Day
-                already sit outside the week, they could. For now weekdays stay
-                tied to the civil week so the two don’t drift apart. The spec lists
-                this as an open question.
+                Your week doesn’t change. Monday is still Monday, and the
+                weekend is still the weekend, so your plans and everyone else’s
+                stay in step.
               </p>
             </div>
           </div>

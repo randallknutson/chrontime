@@ -54,7 +54,7 @@ export function Playground() {
         extra: `sums to ${formatTime((parsed.time + parsed.zone + 1000) % 1000, 3)} GMT`,
       };
     } catch (err) {
-      return { error: err instanceof Error ? err.message : "Could not parse." };
+      return { error: err instanceof Error ? err.message : "That doesn’t look like a Chron date or time." };
     }
   }, [chronValue, place.zone]);
 
@@ -64,13 +64,13 @@ export function Playground() {
         <div className="section-head">
           <h2>Convert anything.</h2>
           <p className="lede">
-            Both directions, at the meridian you picked above. Paste an instant, a
-            date, or a time of day.
+            Turn any date and time into Chron Time and back, for the zone you
+            picked above.
           </p>
         </div>
         <div className="play">
           <div className="play-card">
-            <h3>Civil UTC → Chron</h3>
+            <h3>Your clock → Chron</h3>
             <label className="field">
               UTC date and time
               <input
@@ -96,9 +96,9 @@ export function Playground() {
             <p className="small muted">At {place.name} ({formatZone(place.zone)}).</p>
           </div>
           <div className="play-card">
-            <h3>Chron → civil</h3>
+            <h3>Chron → your clock</h3>
             <label className="field">
-              Chron string
+              Chron date or time
               <input
                 value={chronValue}
                 onChange={(e) => setChronValue(e.target.value)}
@@ -107,7 +107,7 @@ export function Playground() {
               />
             </label>
             <button className="chip" type="button" onClick={() => setChronValue(formatInterchange(now))}>
-              Use the live instant
+              Use right now
             </button>
             {fromChron && "error" in fromChron ? (
               <div className="output error">{fromChron.error}</div>
@@ -118,7 +118,7 @@ export function Playground() {
                 {fromChron.extra}
               </div>
             ) : null}
-            <p className="small muted">Instants, dates, and times of day all parse.</p>
+            <p className="small muted">Try a full timestamp, a date like 2026J6, or a time like 500Z.</p>
           </div>
         </div>
       </div>

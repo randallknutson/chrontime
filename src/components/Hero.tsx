@@ -29,7 +29,7 @@ export function Hero() {
     <section className="hero" id="top">
       <div className="wrap hero-grid">
         <div className="hero-copy">
-          <p className="eyebrow">Chron Time · a draft standard</p>
+          <p className="eyebrow">Chron Time · a simpler date and time</p>
           <h1>
             Time is harder than it <em>needs</em> to be.
           </h1>
@@ -40,8 +40,8 @@ export function Hero() {
             rest so dates and times are plain arithmetic.
           </p>
           <div className="actions">
-            <a className="btn primary" href="#problem">See what’s broken</a>
-            <a className="btn" href="#calendar">Skip to the fix</a>
+            <a className="btn primary" href="#calendar">See how it works</a>
+            <a className="btn" href="#try">Try it now</a>
           </div>
         </div>
 

@@ -1,15 +1,15 @@
 const POINTS = [
   {
-    h: "Same year as everyone else",
-    p: "2026 is still 2026, and 12 May is still 12 May. You can talk to anyone in months and hours, and convert when you need to.",
+    h: "Nothing to give up",
+    p: "2026 is still 2026, and 12 May is still 12 May. Talk to anyone in months and hours, and switch whenever you like.",
   },
   {
-    h: "Convert at the edges",
-    p: "Keep RFC 3339 on the wire where systems already speak it. Use Chron where a person reads a clock or code adds a duration.",
+    h: "Start small",
+    p: "Use it for one calendar, one team, or one app. Chron Time sits next to the clock you already have, so nobody else has to switch first.",
   },
   {
-    h: "Geography, not law",
-    p: "A civil offset is only ever used to find UTC. It never becomes the Chron zone, so daylight saving can’t sneak back in.",
+    h: "Set by the sun, not by law",
+    p: "Your zone comes from where you stand. No government vote or daylight saving switch can ever move it.",
   },
 ];
 
@@ -32,18 +32,13 @@ export function Close() {
           ))}
         </div>
         <p className="center muted narrow-c">
-          The grammar, leap rule, spare days, profiles, and zone sign are written
-          up as a draft specification, with a TypeScript implementation. Two
-          questions are deliberately open: whether A1 should always be a Monday,
-          and whether the thirteen two-fortnight months should get names.
+          Try the converter above, read the full specification, or add Chron Time
+          to your own app in a few lines.
         </p>
         <div className="actions center">
           <a className="btn primary" href="/spec.html">Read the spec</a>
           <a className="btn" href="https://github.com/randallknutson/chrontime.js">
-            @chrontime/chrontime
-          </a>
-          <a className="btn" href="https://github.com/randallknutson/chrontime">
-            Site source
+            Get the library
           </a>
         </div>
       </div>

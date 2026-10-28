@@ -36,7 +36,7 @@ export function Developers() {
       <div className="wrap">
         <div className="act-head">
           <span className="act-num">↳</span>
-          <span className="act-name">Put together</span>
+          <span className="act-name">For developers</span>
         </div>
         <div className="section-head">
           <h2>One string, read left to right.</h2>
@@ -115,7 +115,7 @@ export function Developers() {
         </div>
 
         <pre className="snippet">
-          <span className="c"># TypeScript reference implementation</span>
+          <span className="c"># Add Chron Time to your app</span>
           {"\nnpm install @chrontime/chrontime\n\n"}
           {"import { ChronInstant, fromUtc, zoneFromLongitude } from '@chrontime/chrontime';\n\n"}
           {"ChronInstant.parse('2026R04:659.472+269').toCanonical();\n"}

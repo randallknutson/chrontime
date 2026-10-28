@@ -101,10 +101,9 @@ export function Clock() {
           </div>
           <div className="prose">
             <p className="muted">
-              Every Chron day has exactly 1000 chrons, measured on the same POSIX
-              scale computers already use. A UTC leap second doesn’t get its own
-              instant. It maps to chron <code>999</code> of that day, not to
-              midnight of the next.
+              Every day has exactly 1000 chrons, with no exceptions. No day is
+              short an hour in spring or long an hour in autumn, and even a leap
+              second never adds a 1001st.
             </p>
           </div>
         </div>
